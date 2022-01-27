@@ -55,7 +55,6 @@ export default function App({ navigation }) {
           }}
         >
           <Text style={styles.text}>Back</Text>
-        // GIFLENS-https://media3.giphy.com/media/d30qasBONVnGfsmQ/200.gif
         </TouchableOpacity>
         <TouchableOpacity>
           <Text style={styles.text}>{text}</Text>
