@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import Divider from "react-native-elements/src/Divider";
+import { Divider } from "react-native-elements";
 
 export const BottomTabsIcons = [
   {

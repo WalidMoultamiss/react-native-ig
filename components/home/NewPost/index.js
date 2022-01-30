@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View , Image } from "react-native";
 import React from "react";
-import Divider from "react-native-elements/src/Divider";
+import { Divider } from "react-native-elements";
 
 const NewPost = () => {
   return (

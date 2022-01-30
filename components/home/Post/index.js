@@ -1,9 +1,9 @@
 import { View, Text , Image , TouchableOpacity} from "react-native";
 import React from "react";
-import Divider from "react-native-elements/src/Divider";
 import PostHeader from "./PostHeader";
 import PostFooter from "./PostFooter";
 import PostContent from "./PostContent";
+import { Divider } from "react-native-elements";
 
 const Post = ({post}) => {
   return (

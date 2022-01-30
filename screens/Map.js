@@ -36,10 +36,48 @@ export default function App({ navigation }) {
     text = "";
   }
 
+  let markers = [
+    {
+      latitude: 32.2997193 + Math.random() / 1000,
+      longitude: -9.2452911 + Math.random() / 1000,
+      title: "Marker 1",
+      description: "This is marker 1",
+    },
+    {
+      latitude: 32.2997193 + Math.random() / 1000,
+      longitude: -9.2452911 + Math.random() / 1000,
+      title: "Marker 2",
+      description: "This is marker 2",
+    },
+    {
+      latitude: 32.2997193 + Math.random() / 1000,
+      longitude: -9.2452911 + Math.random() / 1000,
+      title: "Marker 3",
+      description: "This is marker 3",
+    },
+  ];
+
+  const handlePressMarker = (marker) => {
+    navigation.navigate("Details", {
+      marker,
+    });
+  };
+
+  const addRandomMarker = () => {
+    markers.push({
+      latitude: 32.2997193 + Math.random() / 1000,
+      longitude: -9.2452911 + Math.random() / 1000,
+      title: "Marker " + markers.length,
+      description: "This is marker " + markers.length,
+    });
+  };
+
+  //
+
   const [zoom, setZoom] = useState(14);
   const [region, setRegion] = useState({
-    latitude: 37.78825,
-    longitude: -122.4324,
+    latitude:32.2997193,
+    longitude: -9.2452911,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
@@ -55,7 +93,6 @@ export default function App({ navigation }) {
           }}
         >
           <Text style={styles.text}>Back</Text>
-        // GIFLENS-https://media3.giphy.com/media/d30qasBONVnGfsmQ/200.gif
         </TouchableOpacity>
         <TouchableOpacity>
           <Text style={styles.text}>{text}</Text>
@@ -65,19 +102,19 @@ export default function App({ navigation }) {
         </TouchableOpacity>
       </View>
       <MapView region={region} style={styles.map}>
-        <Marker
-          coordinate={{
-            latitude: location?.coords?.latitude,
-            longitude: location?.coords?.longitude,
-          }}
-          title="My Location"
-          description="My Location"
-        >
-          <Image
-            source={require("../assets/bclick.png")}
-            style={{ width: 80, height: 80 }}
-          />
+        {markers.map((marker, index) => (
+          <Marker
+            key={index}
+            coordinate={marker}
+            title={marker.title}
+            description={marker.description}
+            onPress={() => handlePressMarker(marker)}
+          ><Image
+          source={require("../assets/bclick.png")}
+          style={{ width: 80, height: 80 }}
+        />
         </Marker>
+        ))}
       </MapView>
     </View>
   );
