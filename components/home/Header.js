@@ -30,7 +30,7 @@ const Header = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => alert("clicked")}>
           <View style={styles.badge}>
-            <Text style={{ color: "white" }}>22</Text>
+            <Text style={styles.text}>22</Text>
           </View>
           <Image
             style={styles.logo}
