@@ -38,22 +38,40 @@ export default function App({ navigation }) {
 
   let markers = [
     {
-      latitude: 32.2997193 + Math.random() / 1000,
-      longitude: -9.2452911 + Math.random() / 1000,
+      latitude: 32.2957193 + Math.random() / 1000,
+      longitude: -9.2422911 + Math.random() / 1000,
       title: "Marker 1",
       description: "This is marker 1",
+      deliver:{
+        name:"Hassan markiz",
+        phone:"06 66 65 06 96",
+        image:"https://i.pravatar.cc/300?img=4",
+        rating:4,
+      }
     },
     {
-      latitude: 32.2997193 + Math.random() / 1000,
-      longitude: -9.2452911 + Math.random() / 1000,
+      latitude: 32.2957193 + Math.random() / 1000,
+      longitude: -9.2422911 + Math.random() / 1000,
       title: "Marker 2",
       description: "This is marker 2",
+      deliver:{
+        name:"Ismail Announ",
+        phone:"07 07 95 43 67",
+        image:"https://i.pravatar.cc/300?img=8",
+        rating:5,
+      }
     },
     {
-      latitude: 32.2997193 + Math.random() / 1000,
-      longitude: -9.2452911 + Math.random() / 1000,
+      latitude: 32.2957193 + Math.random() / 1000,
+      longitude: -9.2422911 + Math.random() / 1000,
       title: "Marker 3",
       description: "This is marker 3",
+      deliver:{
+        name:"Haitam El-Hajj",
+        phone:"06 96 65 55 55",
+        image:"https://i.pravatar.cc/300?img=11",
+        rating:3,
+      }
     },
   ];
 
@@ -77,9 +95,9 @@ export default function App({ navigation }) {
   const [zoom, setZoom] = useState(1);
   const [region, setRegion] = useState({
     latitude: 32.2997193,
-    longitude: -9.2452911,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
+    longitude: -9.242911,
+    latitudeDelta: 0.02,
+    longitudeDelta: 0.02,
   });
 
   const marker = Marker;

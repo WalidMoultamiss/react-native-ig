@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   Linking,
   Platform,
+  TouchableOpacityBase,
 } from "react-native";
 import Constants from "expo-constants";
 import Chat from "../components/bclick/Chat";
@@ -16,7 +17,7 @@ import { Divider } from "react-native-elements";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-const Details = () => {
+const Details = ({ navigation, route }) => {
   dialCall = (tel) => {
     let phoneNumber = "";
 
@@ -28,6 +29,8 @@ const Details = () => {
 
     Linking.openURL(phoneNumber);
   };
+
+  const deliver = route.params.marker.deliver;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
@@ -53,14 +56,22 @@ const Details = () => {
                 alignItems: "center",
               }}
             >
-              <Image
-                source={require("../assets/photos/deliveryMan.png")}
-                style={{ width: 180, height: 180 }}
-              />
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ImageViewer", {
+                    image:deliver.image,
+                  });
+                }}
+              >
+                <Image
+                  source={{ uri: deliver.image }}
+                  style={{ width: 180, height: 180, borderRadius: 100 }}
+                />
+              </TouchableOpacity>
             </View>
-            <Text style={styles.textName}>Ismail Announ</Text>
+            <Text style={styles.textName}>{deliver?.name}</Text>
             <View style={styles.rating}>
-              {Array(5)
+              {Array(deliver.rating)
                 .fill(0)
                 .map((_, index) => (
                   <Image
@@ -72,10 +83,10 @@ const Details = () => {
             </View>
             <View style={styles.containerCall}>
               <Text style={{ ...styles.text, fontSize: 28 }}>
-                07 07 95 43 67
+                {deliver?.phone}
               </Text>
               <TouchableOpacity
-                onPress={() => dialCall("0707954367")}
+                onPress={() => dialCall(deliver?.phone)}
                 style={{
                   padding: 7,
                   backgroundColor: "#FF8C00",

@@ -13,16 +13,16 @@ const Chat = () => {
       sender: "deliver",
     },
     {
-        chat: "Peut tu me ramener 1kg de pomme de tére ?",
-        sender: "user",
+      chat: "Peut tu me ramener 1kg de pomme de tére ?",
+      sender: "user",
     },
     {
-        chat: "Oui, je vais te le faire",
-        sender: "deliver",
+      chat: "Oui, je vais te le faire",
+      sender: "deliver",
     },
     {
-        chat: "Merci",
-        sender: "user",
+      chat: "Merci",
+      sender: "user",
     },
   ];
 
@@ -33,9 +33,7 @@ const Chat = () => {
         paddingHorizontal: 10,
       }}
     >
-      {chats.map((_, i) => (
-        <BubbleChat chat={_} key={i} />
-      ))}
+      {chats.map((_, i) =><BubbleChat chat={_} key={i} />)}
     </View>
   );
 };
