@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, Image } from 'react-native';
 import React from 'react';
-import Divider from "react-native-elements/src/Divider";
+import {Divider} from "react-native-elements";
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 

@@ -65,8 +65,8 @@ export default function App({ navigation }) {
 
   const addRandomMarker = () => {
     markers.push({
-      latitude: 32.2997193 + Math.random() / 1000,
-      longitude: -9.2452911 + Math.random() / 1000,
+      latitude: 30.2197193 + Math.random() / 10,
+      longitude: -15.2452911 + Math.random() / 10,
       title: "Marker " + markers.length,
       description: "This is marker " + markers.length,
     });
@@ -74,9 +74,9 @@ export default function App({ navigation }) {
 
   //
 
-  const [zoom, setZoom] = useState(14);
+  const [zoom, setZoom] = useState(1);
   const [region, setRegion] = useState({
-    latitude:32.2997193,
+    latitude: 32.2997193,
     longitude: -9.2452911,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
@@ -101,7 +101,7 @@ export default function App({ navigation }) {
           <Text style={styles.text}>locate Me</Text>
         </TouchableOpacity>
       </View>
-      <MapView region={region} style={styles.map}>
+      <MapView region={region} style={styles.map} zoom={zoom}>
         {markers.map((marker, index) => (
           <Marker
             key={index}
@@ -109,11 +109,12 @@ export default function App({ navigation }) {
             title={marker.title}
             description={marker.description}
             onPress={() => handlePressMarker(marker)}
-          ><Image
-          source={require("../assets/bclick.png")}
-          style={{ width: 80, height: 80 }}
-        />
-        </Marker>
+          >
+            <Image
+              source={require("../assets/bclick.png")}
+              style={{ width: 80, height: 80 }}
+            />
+          </Marker>
         ))}
       </MapView>
     </View>
