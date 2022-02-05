@@ -3,6 +3,10 @@ import React from "react";
 import { Icon } from "react-native-elements";
 
 const ImageViewer = ({ route, navigation }) => {
+
+  
+
+
   return (
     <View
       style={{

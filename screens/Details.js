@@ -11,14 +11,27 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import Chat from "../components/bclick/Chat";
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Divider } from "react-native-elements";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const Details = ({ navigation, route }) => {
-  dialCall = (tel) => {
+
+
+  const GotoCloseDelivery = () => {
+    navigation.navigate("CloseDelivery");
+  };
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      GotoCloseDelivery();
+    }, 1000);
+  }, []);
+
+  const dialCall = (tel) => {
     let phoneNumber = "";
 
     if (Platform.OS === "android") {
@@ -33,96 +46,92 @@ const Details = ({ navigation, route }) => {
   const deliver = route.params.marker.deliver;
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
+    <SafeAreaView style={{ backgroundColor: "#000", flex: 1 }}>
       <KeyboardAwareScrollView
         style={{
-          flex: 1,
           backgroundColor: "#000",
-          height: "100%",
+          maxHeight: "100%",
         }}
       >
-        <View
-          style={{
-            flex: 1,
-            width: "100%",
-            alignItems: "stretch",
-            height: "100%",
-          }}
-        >
-          <ScrollView vertical style={{ width: "100%" }}>
-            <View
-              style={{
-                width: "100%",
-                alignItems: "center",
+        <View style={{ width: "100%" ,height:"100%" }}>
+          <View
+            style={{
+              width: "100%",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("ImageViewer", {
+                  image: deliver.image,
+                });
               }}
             >
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("ImageViewer", {
-                    image:deliver.image,
-                  });
-                }}
-              >
+              <Image
+                source={{ uri: deliver.image }}
+                style={{ width: 180, height: 180, borderRadius: 100 }}
+              />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.textName}>{deliver?.name}</Text>
+          <View style={styles.rating}>
+            {Array(deliver.rating)
+              .fill(0)
+              .map((_, index) => (
                 <Image
-                  source={{ uri: deliver.image }}
-                  style={{ width: 180, height: 180, borderRadius: 100 }}
+                  key={index}
+                  source={require("../assets/icons/star.png")}
+                  style={styles.starRating}
                 />
-              </TouchableOpacity>
-            </View>
-            <Text style={styles.textName}>{deliver?.name}</Text>
-            <View style={styles.rating}>
-              {Array(deliver.rating)
-                .fill(0)
-                .map((_, index) => (
-                  <Image
-                    key={index}
-                    source={require("../assets/icons/star.png")}
-                    style={styles.starRating}
-                  />
-                ))}
-            </View>
-            <View style={styles.containerCall}>
-              <Text style={{ ...styles.text, fontSize: 28 }}>
-                {deliver?.phone}
-              </Text>
-              <TouchableOpacity
-                onPress={() => dialCall(deliver?.phone)}
-                style={{
-                  padding: 7,
-                  backgroundColor: "#FF8C00",
-                  borderRadius: 10,
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Image
-                  source={require("../assets/icons/call.png")}
-                  style={{ width: 30, height: 30 }}
-                />
-              </TouchableOpacity>
-            </View>
-            <Divider
+              ))}
+          </View>
+          <View style={styles.containerCall}>
+            <Text style={{ ...styles.text, fontSize: 28 }}>
+              {deliver?.phone}
+            </Text>
+            <TouchableOpacity
+              onPress={() => dialCall(deliver?.phone)}
               style={{
+                padding: 7,
                 backgroundColor: "#FF8C00",
-                width: "100%",
-                marginTop: 30,
-                marginBottom: 10,
+                borderRadius: 10,
+                alignItems: "center",
+                justifyContent: "center",
               }}
-            />
-            <Chat />
-          </ScrollView>
+            >
+              <Image
+                source={require("../assets/icons/call.png")}
+                style={{ width: 30, height: 30 }}
+              />
+            </TouchableOpacity>
+          </View>
+          <Divider
+            style={{
+              backgroundColor: "#FF8C00",
+              width: "100%",
+              marginTop: 30,
+              marginBottom: 10,
+            }}
+          />
+          <Chat navigation={navigation} />
         </View>
         <View
           style={{
             width: "100%",
+            position: "absolute",
+            bottom: 0,
+            zIndex: 100,
             backgroundColor: "#000",
             padding: 10,
             flexDirection: "row",
             justifyContent: "space-around",
-            marginBottom: 10,
           }}
         >
-          <TextInput style={styles.textInput} placeholder="Type your message" />
+          <TextInput
+            style={styles.textInput}
+            placeholderTextColor={"#fff"}
+            placeholder="Commandez maintenant..."
+          />
           <TouchableOpacity
             style={{
               padding: 7,

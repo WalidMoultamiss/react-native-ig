@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import * as Location from "expo-location";
 import { Marker } from "react-native-maps";
+import { Icon } from "react-native-elements/dist/icons/Icon";
 
 export default function App({ navigation }) {
   const [location, setLocation] = useState(null);
@@ -42,36 +43,36 @@ export default function App({ navigation }) {
       longitude: -9.2422911 + Math.random() / 1000,
       title: "Marker 1",
       description: "This is marker 1",
-      deliver:{
-        name:"Hassan markiz",
-        phone:"06 66 65 06 96",
-        image:"https://i.pravatar.cc/300?img=4",
-        rating:4,
-      }
+      deliver: {
+        name: "Hassan markiz",
+        phone: "06 66 65 06 96",
+        image: "https://atlastrip.vercel.app/_next/image?url=https%3A%2F%2Fatlastrip-backend.herokuapp.com%2Fmedia%2F2ac42989-589d-4ef9-830d-6e22d1deeca6.ismail.jpg&w=1920&q=75",
+        rating: 4,
+      },
     },
     {
       latitude: 32.2957193 + Math.random() / 1000,
       longitude: -9.2422911 + Math.random() / 1000,
       title: "Marker 2",
       description: "This is marker 2",
-      deliver:{
-        name:"Ismail Announ",
-        phone:"07 07 95 43 67",
-        image:"https://i.pravatar.cc/300?img=8",
-        rating:5,
-      }
+      deliver: {
+        name: "Ismail Announ",
+        phone: "07 07 95 43 67",
+        image: "https://atlastrip.vercel.app/_next/image?url=https%3A%2F%2Fatlastrip-backend.herokuapp.com%2Fmedia%2F2ac42989-589d-4ef9-830d-6e22d1deeca6.ismail.jpg&w=1920&q=75",
+        rating: 5,
+      },
     },
     {
       latitude: 32.2957193 + Math.random() / 1000,
       longitude: -9.2422911 + Math.random() / 1000,
       title: "Marker 3",
       description: "This is marker 3",
-      deliver:{
-        name:"Haitam El-Hajj",
-        phone:"06 96 65 55 55",
-        image:"https://i.pravatar.cc/300?img=11",
-        rating:3,
-      }
+      deliver: {
+        name: "Haitam El-Hajj",
+        phone: "06 96 65 55 55",
+        image: "https://atlastrip.vercel.app/_next/image?url=https%3A%2F%2Fatlastrip-backend.herokuapp.com%2Fmedia%2F2ac42989-589d-4ef9-830d-6e22d1deeca6.ismail.jpg&w=1920&q=75",
+        rating: 3,
+      },
     },
   ];
 
@@ -106,17 +107,44 @@ export default function App({ navigation }) {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity
-          onPress={() => {
-            navigation.goBack();
-          }}
+          style={styles.headerButton}
+          onPress={() => navigation.navigate("Cart")}
         >
-          <Text style={styles.text}>Back</Text>
+          <Icon
+            name="cart"
+            type="material-community"
+            color="#fff"
+            underlayColor="transparent"
+            iconStyle={{ marginLeft: 10 }}
+          />
+          <View
+            style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              backgroundColor: "red",
+              padding: 3,
+              borderRadius: 25,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ color: "#fff", fontSize: 10 }}>12</Text>
+          </View>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={styles.text}>{text}</Text>
+          <Text style={{ ...styles.text, color: "#FF8C00" }}>B'click</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.text}>locate Me</Text>
+        <TouchableOpacity
+          style={styles.headerButton}
+        >
+          <Icon
+            name="account-circle"
+            type="material-community"
+            color="#fff"
+            underlayColor="transparent"
+            iconStyle={{ marginLeft: 10 }}
+          />
         </TouchableOpacity>
       </View>
       <MapView region={region} style={styles.map} zoom={zoom}>
@@ -146,13 +174,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  headerButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 5,
+  },
+
   map: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,
   },
   text: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: "bold",
   },
   header: {

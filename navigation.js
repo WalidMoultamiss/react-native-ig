@@ -6,7 +6,9 @@ import Add from "./screens/Add";
 import Map from "./screens/Map";
 import Details from "./screens/Details";
 import Balab from "./screens/Balab";
+import Cart from "./screens/Cart";
 import ImageViewer from "./screens/ImageViewer";
+import CloseDelivery from "./screens/CloseDelivery";
 import { TransitionPresets } from "@react-navigation/stack";
 
 const screenOptions = {
@@ -29,6 +31,22 @@ const SignedInStack = () => {
           component={ImageViewer}
           options={{
             title: "Profile",
+            ...TransitionPresets.ModalPresentationIOS,
+          }}
+        />
+        <Stack.Screen
+          name="CloseDelivery"
+          component={CloseDelivery}
+          options={{
+            title: "CloseDelivery",
+            ...TransitionPresets.ModalPresentationIOS,
+          }}
+        />
+        <Stack.Screen
+          name="Cart"
+          component={Cart}
+          options={{
+            title: "Cart",
             ...TransitionPresets.ModalPresentationIOS,
           }}
         />
